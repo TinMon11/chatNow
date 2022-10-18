@@ -1,7 +1,10 @@
+import { RegisterPage } from "./pages/RegisterPage";
+import "./styles/styles.scss"
+
 function App() {
   return (
     <div>
-      Hello world!
+      <RegisterPage/>
     </div>
   );
 }
