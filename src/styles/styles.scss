@@ -8,11 +8,17 @@ Textos: BLANCO o NEGRO
 */
 
 .formContainer {
-    background-color: #564787;
+    background-image: linear-gradient(to bottom right, #101935, #ff3561);
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    p {
+        font-size: 12px;
+        margin-top: 4px;
+        color:#101935
+    }
 
     .formWrapper {
         background-color: white;
@@ -42,15 +48,40 @@ Textos: BLANCO o NEGRO
 
             input {
                 padding: 8px;
+                width: 250px;
                 background-color: white;
                 border: none;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
                 border-bottom: 1px solid #564787;
             }
 
             input:focus {
                 outline: none;
-                box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5)
+                box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.5)
             }
+
+            label {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 12px;
+                justify-content: center;
+
+                img{
+                    width: 38px;
+                }
+            }
+        }
+
+        .loginError {
+            color: white;
+            padding: 3px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            background-color: #101935;
         }
     }
 
