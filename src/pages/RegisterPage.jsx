@@ -5,12 +5,14 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, storage, db } from '../connections/firebase'
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
+import { useNavigate, Link } from 'react-router-dom';
 
 
 
 export const RegisterPage = () => {
 
   const [error, setError] = useState(false)
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
 
@@ -40,20 +42,22 @@ export const RegisterPage = () => {
                 displayName,
                 photoURL: downloadURL
               });
+
+            /*Creo Base de Datos de Usuarios*/
             await setDoc(doc(db, "users", resp.user.uid), {
               uid: resp.user.uid,
               displayName,
               email,
               photoURL: downloadURL
             });
+
+            /*Creo Base de datos de Chats*/
+            await setDoc(doc(db, "userChats", resp.user.uid), {})
           });
         }
       )
-
-
-    }
-
-    catch (error) {
+      navigate("/")
+    } catch (error) {
       setError(true)
     }
   }
@@ -76,7 +80,7 @@ export const RegisterPage = () => {
           <button className='ChatButton'>Sign Up</button>
           {error && <span className='loginError'>Something went wrong</span>}
         </form>
-        <p>Do your have an account? LOGIN HERE</p>
+        <p>Do your have an account?  <Link to="/login">Login Here</Link> </p>
       </div>
     </div>
   )
